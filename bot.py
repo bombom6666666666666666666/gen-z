@@ -53,4 +53,4 @@ async def verify(ctx):
     except:
         await ctx.author.send("มีข้อผิดพลาดในการตรวจสอบ โปรดลองใหม่อีกครั้ง")
 
-bot.run('MTI4NzM1MjA0Mzc1NzEwOTI2OQ.GUALQK.hs9B7QsNC-cmw1pwgW03NJMzwhmn-2eIenasBA')
+bot.run('your-bot-token')
