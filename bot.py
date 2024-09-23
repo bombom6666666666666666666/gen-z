@@ -62,5 +62,5 @@ async def pig(ctx):
 
 # ผูกพอร์ตสำหรับ Render
 if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 5000))
+    port = int(os.environ.get('PORT', 8000))
     bot.run(os.getenv('DISCORD_TOKEN'))  # ใช้ Environment Variable สำหรับ Token
