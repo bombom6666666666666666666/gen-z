@@ -31,12 +31,14 @@ class VerifyModal(Modal):
                     channel_id = 1287752078491390002  # เปลี่ยนเป็น ID ของช่องที่ต้องการส่ง
                     channel = bot.get_channel(channel_id)
                     if channel:
-                        await channel.send(f"{interaction.user.mention} ยืนยันเรียบร้อยแล้ว! 🎉\n[ยืนยันสำเร็จ](https://i.pinimg.com/originals/e9/e2/86/e9e286a9cbb4eec59d3309a1ac538182.gif)")
+                        await channel.send(f"{interaction.user.mention} ยืนยันเรียบร้อยแล้ว! 🎉", 
+                                           embed=discord.Embed().set_image(url="https://i.pinimg.com/originals/97/20/79/972079b7a1f8c36bd570f4977c7bc98b.gif"))  # เปลี่ยนเป็นลิงก์ GIF ยืนยันสำเร็จ
                 else:
                     await interaction.response.send_message(f"ไม่พบยศ 'Verified' ในเซิร์ฟเวอร์นี้", ephemeral=True)
             else:
-                await interaction.response.send_message(f"{interaction.user.mention} คุณไม่ผ่านการยืนยัน เพราะอายุไม่ถึง 16 ปี\n[ยืนยันไม่สำเร็จเพราะมึงโง่](https://i.pinimg.com/originals/ae/d8/74/aed874bdf3adc009fb87be83d909171c.gif)", ephemeral=True)
+                await interaction.response.send_message(f"{interaction.user.mention} คุณไม่ผ่านการยืนยัน เพราะอายุไม่ถึง 16 ปี", ephemeral=True)
 
+            await interaction.message.delete()
         except ValueError:
             await interaction.response.send_message("กรุณากรอก พ.ศ. เป็นตัวเลข", ephemeral=True)
 
@@ -58,5 +60,7 @@ async def pig(ctx):
     view = VerifyButton()
     await ctx.send("กดปุ่มด้านล่างเพื่อยืนยันตัวตน", view=view)
 
-TOKEN = os.getenv('DISCORD_TOKEN')  # ใช้ Environment Variable สำหรับ Token
-bot.run(TOKEN)  # เรียกใช้งานบอท
+# ผูกพอร์ตสำหรับ Render
+if __name__ == '__main__':
+    port = int(os.environ.get('PORT', 5000))
+    bot.run(os.getenv('DISCORD_TOKEN'))  # ใช้ Environment Variable สำหรับ Token
